@@ -1,0 +1,29 @@
+.header {
+  width: 100%;
+  display: block;
+}
+
+.headerInner {
+  text-align: center;
+}
+
+.navList {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+}
+
+.navItem {
+  flex-basis: 25%;
+  display: block;
+  color: white;
+  background-color: orange;
+  text-align: center;
+  border-left: solid 1px white;
+  border-right: solid 1px white;
+}
+
+.navLink {
+  padding: 20px;
+  display: block;
+}
