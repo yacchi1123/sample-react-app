@@ -20,7 +20,7 @@ function Top() {
           <p>Qiitaの最新記事を取得します。</p>
           <Button text="データ取得" method={fetchData} />
         </div>
-        { isShowNew ? <New /> : null }
+        { isShowNew && <New /> }
       </main>
     </div>
   );
