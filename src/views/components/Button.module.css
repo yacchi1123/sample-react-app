@@ -1,0 +1,9 @@
+button.buttonDefault {
+  width: 100%;
+  max-width: 340px;
+  padding: 15px 10px;
+  display: inline-block;
+  text-align: center;
+  color: #fff;
+  background-color: #ed576c;
+}
