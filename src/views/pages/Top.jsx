@@ -1,10 +1,14 @@
+import { useState } from 'react';
 import styles from './Top.module.css';
 import Header from '../components/Header';
+import New from '../components/New';
 
 function Top() {
+  const [isShowNew, setIsShowNew] = useState(false);
+
   const fetchData = (e) => {
     e.preventDefault();
-    console.log('click');
+    setIsShowNew(true);
   }
 
   return (
@@ -13,27 +17,14 @@ function Top() {
       <main>
         <div className={styles.buttonArea}>
           <p>Qiitaの最新記事を取得します。</p>
-          <a
-            href="https://ja.reactjs.org/docs/handling-events.html"
+          <button
             onClick={fetchData}
             className={styles.buttonDefault}
           >
             データ取得
-          </a>
+          </button>
         </div>
-        <section className={styles.new}>
-          <ul className={styles.newList}>
-            <li className={styles.newItem}>
-              <a href="#1">タイトルが入ります。タイトルが入ります。タイトルが入ります。</a>
-            </li>
-            <li className={styles.newItem}>
-              <a href="#2">タイトルが入ります。タイトルが入ります。タイトルが入ります。</a>
-            </li>
-            <li className={styles.newItem}>
-              <a href="#3">タイトルが入ります。タイトルが入ります。タイトルが入ります。</a>
-            </li>
-          </ul>
-        </section>
+        { isShowNew ? <New /> : null }
       </main>
     </div>
   );

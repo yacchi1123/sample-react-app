@@ -8,7 +8,7 @@
   margin-top: 50px;
 }
 
-a.buttonDefault {
+button.buttonDefault {
   width: 100%;
   max-width: 340px;
   padding: 15px 10px;
@@ -16,17 +16,4 @@ a.buttonDefault {
   text-align: center;
   color: #fff;
   background-color: #ed576c;
-}
-
-.new {
-  margin-top: 50px;
-}
-
-.newList {
-  width: 80%;
-  margin: auto;
-}
-
-.newItem {
-  margin-top: 10px;
 }
