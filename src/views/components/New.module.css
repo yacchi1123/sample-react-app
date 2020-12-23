@@ -10,3 +10,8 @@
 .newItem {
   margin-top: 10px;
 }
+
+.newLink:hover {
+  color: #0000ee;
+  text-decoration: underline;
+}

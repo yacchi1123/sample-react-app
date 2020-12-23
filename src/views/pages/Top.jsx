@@ -3,13 +3,24 @@ import styles from './Top.module.css';
 import Header from '../components/Header';
 import New from '../components/New';
 import Button from '../components/Button';
+import { qiitaApi } from '../../services/api';
 
 function Top() {
   const [isShowNew, setIsShowNew] = useState(false);
+  const [qiitaData, setQiitaData] = useState('');
 
-  const fetchData = (e) => {
-    e.preventDefault();
-    setIsShowNew(true);
+  const itemParams = {
+    page: 1,
+    per_page: 5
+  }
+
+  const fetchData = () => {
+    qiitaApi.get('/items', { params: itemParams }).then((result) => {
+      setQiitaData(result.data);
+      setIsShowNew(true);
+    }).catch((e) => {
+      console.error(e);
+    })
   }
 
   return (
@@ -20,7 +31,7 @@ function Top() {
           <p>Qiitaの最新記事を取得します。</p>
           <Button text="データ取得" method={fetchData} />
         </div>
-        { isShowNew && <New /> }
+        { isShowNew && <New data={qiitaData} /> }
       </main>
     </div>
   );

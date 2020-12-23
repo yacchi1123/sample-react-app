@@ -1,18 +1,30 @@
 import styles from './New.module.css';
 
-function New() {
+function New(props) {
+  const list = props.data.map((item, index) => {
+    const { title, url } = item;
+    return (
+      <li key={index} className={styles.newItem}>
+        <a
+          className={styles.newLink}
+          href={url}
+          target="_blank"
+          rel="noreferrer"
+        >
+          {title}
+        </a>
+      </li>
+    );
+  });
+  // result.data.forEach((item) => {
+  //   const { title, url } = item;
+  //   setTitle(title);
+  //   setUrl(url);
+  // });
   return (
     <section className={styles.new}>
       <ul className={styles.newList}>
-        <li className={styles.newItem}>
-          <a href="#1">タイトルが入ります。タイトルが入ります。タイトルが入ります。</a>
-        </li>
-        <li className={styles.newItem}>
-          <a href="#2">タイトルが入ります。タイトルが入ります。タイトルが入ります。</a>
-        </li>
-        <li className={styles.newItem}>
-          <a href="#3">タイトルが入ります。タイトルが入ります。タイトルが入ります。</a>
-        </li>
+        {list}
       </ul>
     </section>
   );
