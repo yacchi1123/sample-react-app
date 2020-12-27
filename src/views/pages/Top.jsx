@@ -1,26 +1,31 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './Top.module.css';
 import Header from '../components/Header';
 import New from '../components/New';
 import Button from '../components/Button';
-import { qiitaApi } from '../../services/api';
+import {connect} from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { getQiitaDataList } from '../../actions/getQiitaDataList';
 
-function Top() {
+const Top = (props) => {
   const [isShowNew, setIsShowNew] = useState(false);
-  const [qiitaData, setQiitaData] = useState('');
 
-  const itemParams = {
+  const params = {
     page: 1,
     per_page: 5
   }
 
-  const fetchData = () => {
-    qiitaApi.get('/items', { params: itemParams }).then((result) => {
-      setQiitaData(result.data);
+  useEffect(() => {
+    if (!props.isFetching && props.data) {
+      // データ取得できた場合
       setIsShowNew(true);
-    }).catch((e) => {
-      console.error(e);
-    })
+    }
+  // eslint-disable-next-line 
+  }, [props.data]);
+
+  const fetchData = () => {
+    setIsShowNew(false); // 一度非表示にしてからデータ取得
+    props.getQiitaDataList(params);
   }
 
   return (
@@ -31,10 +36,26 @@ function Top() {
           <p>Qiitaの最新記事を取得します。</p>
           <Button text="データ取得" method={fetchData} />
         </div>
-        { isShowNew && <New data={qiitaData} /> }
+        { isShowNew && <New /> }
       </main>
     </div>
   );
 }
 
-export default Top;
+const mapStateToProps = (state) => {
+  return {
+    data: state.getQiitaDataList.data,
+    isFetching: state.getQiitaDataList.isFetching
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getQiitaDataList: bindActionCreators(getQiitaDataList, dispatch),
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Top);

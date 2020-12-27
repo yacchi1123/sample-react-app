@@ -1,6 +1,6 @@
 import styles from './Header.module.css';
 
-function Header() {
+const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.headerInner}>
