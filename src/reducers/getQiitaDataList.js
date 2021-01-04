@@ -7,7 +7,7 @@ const initalState = {
   data: null
 }
 
-const getQiitaDataList = (state = [initalState], action) => {
+const getQiitaDataList = (state = initalState, action) => {
   switch (action.type) {
     case GET_QIITA_DATA_LIST_REQUEST:
       return {
