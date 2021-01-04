@@ -1,6 +1,12 @@
+import {connect} from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { getQiitaDataList } from '../../actions/getQiitaDataList';
 import styles from './New.module.css';
 
-function New(props) {
+const  New = (props) => {
+  if (!props.data) {
+    return null;
+  }
   const list = props.data.map((item, index) => {
     const { title, url } = item;
     return (
@@ -16,11 +22,7 @@ function New(props) {
       </li>
     );
   });
-  // result.data.forEach((item) => {
-  //   const { title, url } = item;
-  //   setTitle(title);
-  //   setUrl(url);
-  // });
+
   return (
     <section className={styles.new}>
       <ul className={styles.newList}>
@@ -30,4 +32,19 @@ function New(props) {
   );
 }
 
-export default New;
+const mapStateToProps = (state) => {
+  return {
+    data: state.getQiitaDataList.data
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getQiitaDataList: bindActionCreators(getQiitaDataList, dispatch),
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(New);

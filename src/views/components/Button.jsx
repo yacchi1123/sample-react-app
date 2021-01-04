@@ -1,6 +1,6 @@
 import styles from './Button.module.css';
 
-function Button(props) {
+const Button = (props) => {
   return (
     <button
       onClick={props.method}
