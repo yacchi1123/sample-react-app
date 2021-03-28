@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import styles from './Top.module.css';
-import Header from '../components/Header';
 import New from '../components/New';
 import Button from '../components/Button';
 import {connect} from 'react-redux';
@@ -29,8 +28,6 @@ const Top = (props) => {
   }
 
   return (
-    <div className={styles.wrap}>
-      <Header />
       <main>
         <div className={styles.buttonArea}>
           <p>Qiitaの最新記事を取得します。</p>
@@ -38,7 +35,6 @@ const Top = (props) => {
         </div>
         { isShowNew && <New /> }
       </main>
-    </div>
   );
 }
 
